@@ -76,7 +76,6 @@ pub fn access_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct AccessRequest<'a> {
     /// Issued when you created your application.

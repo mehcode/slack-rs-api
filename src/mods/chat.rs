@@ -80,7 +80,6 @@ pub fn delete_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct DeleteRequest<'a> {
     /// Timestamp of the message to be deleted.
@@ -297,7 +296,6 @@ pub fn me_message_async(
             result.json().map_err(MeMessageError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct MeMessageRequest<'a> {
@@ -569,7 +567,6 @@ pub fn post_message_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct PostMessageRequest<'a> {
     /// Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See below for more details.
@@ -832,7 +829,6 @@ pub fn unfurl_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct UnfurlRequest<'a> {
     /// Channel ID of the message
@@ -1049,7 +1045,6 @@ pub fn update_async(
             result.json().map_err(UpdateError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct UpdateRequest<'a> {

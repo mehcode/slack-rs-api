@@ -42,8 +42,9 @@ where
 
 pub fn end_dnd_async(
     client: &reqwest::Client,
+    token: &str,
 ) -> impl Future<Item = EndDndResponse, Error = EndDndError<::reqwest::Error>> {
-    let params: &[(&str, &str)] = &[];
+    let params: &[(&str, &str)] = &[("token", token)];
     let url = ::get_slack_url_for_method("dnd.endDnd");
     let mut url = ::reqwest::Url::parse(&url).expect("Unable to parse url");
     url.query_pairs_mut().extend_pairs(params);
@@ -55,7 +56,6 @@ pub fn end_dnd_async(
             result.json().map_err(EndDndError::Client)
         })
 }
-
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct EndDndResponse {
@@ -216,8 +216,9 @@ where
 
 pub fn end_snooze_async(
     client: &reqwest::Client,
+    token: &str,
 ) -> impl Future<Item = EndSnoozeResponse, Error = EndSnoozeError<::reqwest::Error>> {
-    let params: &[(&str, &str)] = &[];
+    let params: &[(&str, &str)] = &[("token", token)];
     let url = ::get_slack_url_for_method("dnd.endSnooze");
     let mut url = ::reqwest::Url::parse(&url).expect("Unable to parse url");
     url.query_pairs_mut().extend_pairs(params);
@@ -229,7 +230,6 @@ pub fn end_snooze_async(
             result.json().map_err(EndSnoozeError::Client)
         })
 }
-
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct EndSnoozeResponse {
@@ -423,7 +423,6 @@ pub fn info_async(
         |mut result: reqwest::Response| result.json().map_err(InfoError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct InfoRequest<'a> {
@@ -619,7 +618,6 @@ pub fn set_snooze_async(
             result.json().map_err(SetSnoozeError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct SetSnoozeRequest {
@@ -824,7 +822,6 @@ pub fn team_info_async(
             result.json().map_err(TeamInfoError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct TeamInfoRequest<'a> {

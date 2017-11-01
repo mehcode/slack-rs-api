@@ -61,7 +61,6 @@ pub fn info_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct InfoRequest<'a> {
     /// Bot user to get info on

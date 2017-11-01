@@ -73,7 +73,6 @@ pub fn get_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct GetRequest<'a> {
     /// User to retrieve profile info for
@@ -269,7 +268,6 @@ pub fn set_async(
         |mut result: reqwest::Response| result.json().map_err(SetError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct SetRequest<'a> {

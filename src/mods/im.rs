@@ -66,7 +66,6 @@ pub fn close_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct CloseRequest<'a> {
     /// Direct message channel to close.
@@ -282,7 +281,6 @@ pub fn history_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct HistoryRequest<'a> {
     /// Direct message channel to fetch history for.
@@ -467,8 +465,9 @@ where
 
 pub fn list_async(
     client: &reqwest::Client,
+    token: &str,
 ) -> impl Future<Item = ListResponse, Error = ListError<::reqwest::Error>> {
-    let params: &[(&str, &str)] = &[];
+    let params: &[(&str, &str)] = &[("token", token)];
     let url = ::get_slack_url_for_method("im.list");
     let mut url = ::reqwest::Url::parse(&url).expect("Unable to parse url");
     url.query_pairs_mut().extend_pairs(params);
@@ -476,7 +475,6 @@ pub fn list_async(
         |mut result: reqwest::Response| result.json().map_err(ListError::Client),
     )
 }
-
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct ListResponse {
@@ -653,7 +651,6 @@ pub fn mark_async(
         |mut result: reqwest::Response| result.json().map_err(MarkError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct MarkRequest<'a> {
@@ -858,7 +855,6 @@ pub fn open_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct OpenRequest<'a> {
     /// User to open a direct message channel with.
@@ -1062,7 +1058,6 @@ pub fn replies_async(
             result.json().map_err(RepliesError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct RepliesRequest<'a> {

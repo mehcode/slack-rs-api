@@ -73,7 +73,6 @@ pub fn list_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct ListRequest<'a> {
     /// The encoded ID of the User Group to update.
@@ -277,7 +276,6 @@ pub fn update_async(
             result.json().map_err(UpdateError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct UpdateRequest<'a> {

@@ -88,7 +88,6 @@ pub fn create_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct CreateRequest<'a> {
     /// A name for the User Group. Must be unique among User Groups.
@@ -299,7 +298,6 @@ pub fn disable_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct DisableRequest<'a> {
     /// The encoded ID of the User Group to disable.
@@ -501,7 +499,6 @@ pub fn enable_async(
             result.json().map_err(EnableError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct EnableRequest<'a> {
@@ -710,7 +707,6 @@ pub fn list_async(
         |mut result: reqwest::Response| result.json().map_err(ListError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct ListRequest {
@@ -927,7 +923,6 @@ pub fn update_async(
             result.json().map_err(UpdateError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct UpdateRequest<'a> {

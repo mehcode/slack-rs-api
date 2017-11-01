@@ -84,7 +84,6 @@ pub fn all_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct AllRequest<'a> {
     /// Search query. May contains booleans, etc.
@@ -314,7 +313,6 @@ pub fn files_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct FilesRequest<'a> {
     /// Search query. May contain booleans, etc.
@@ -538,7 +536,6 @@ pub fn messages_async(
             result.json().map_err(MessagesError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct MessagesRequest<'a> {

@@ -71,7 +71,6 @@ pub fn add_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct AddRequest<'a> {
     /// The content of the reminder
@@ -292,7 +291,6 @@ pub fn complete_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct CompleteRequest<'a> {
     /// The ID of the reminder to be marked as complete
@@ -490,7 +488,6 @@ pub fn delete_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct DeleteRequest<'a> {
     /// The ID of the reminder
@@ -672,7 +669,6 @@ pub fn info_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct InfoRequest<'a> {
     /// The ID of the reminder
@@ -835,8 +831,9 @@ where
 
 pub fn list_async(
     client: &reqwest::Client,
+    token: &str,
 ) -> impl Future<Item = ListResponse, Error = ListError<::reqwest::Error>> {
-    let params: &[(&str, &str)] = &[];
+    let params: &[(&str, &str)] = &[("token", token)];
     let url = ::get_slack_url_for_method("reminders.list");
     let mut url = ::reqwest::Url::parse(&url).expect("Unable to parse url");
     url.query_pairs_mut().extend_pairs(params);
@@ -844,7 +841,6 @@ pub fn list_async(
         |mut result: reqwest::Response| result.json().map_err(ListError::Client),
     )
 }
-
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct ListResponse {

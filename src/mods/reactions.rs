@@ -79,7 +79,6 @@ pub fn add_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct AddRequest<'a> {
     /// Reaction (emoji) name.
@@ -330,7 +329,6 @@ pub fn get_async(
         |mut result: reqwest::Response| result.json().map_err(GetError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct GetRequest<'a> {
@@ -670,7 +668,6 @@ pub fn list_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct ListRequest<'a> {
     /// Show reactions made by this user. Defaults to the authed user.
@@ -951,7 +948,6 @@ pub fn remove_async(
             result.json().map_err(RemoveError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct RemoveRequest<'a> {

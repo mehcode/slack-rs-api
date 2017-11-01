@@ -80,7 +80,6 @@ pub fn access_logs_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct AccessLogsRequest {
     /// Number of items to return per page.
@@ -301,7 +300,6 @@ pub fn billable_info_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct BillableInfoRequest<'a> {
     /// A user to retrieve the billable information for. Defaults to all users.
@@ -466,8 +464,9 @@ where
 
 pub fn info_async(
     client: &reqwest::Client,
+    token: &str,
 ) -> impl Future<Item = InfoResponse, Error = InfoError<::reqwest::Error>> {
-    let params: &[(&str, &str)] = &[];
+    let params: &[(&str, &str)] = &[("token", token)];
     let url = ::get_slack_url_for_method("team.info");
     let mut url = ::reqwest::Url::parse(&url).expect("Unable to parse url");
     url.query_pairs_mut().extend_pairs(params);
@@ -475,7 +474,6 @@ pub fn info_async(
         |mut result: reqwest::Response| result.json().map_err(InfoError::Client),
     )
 }
-
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct InfoResponse {
@@ -675,7 +673,6 @@ pub fn integration_logs_async(
             result.json().map_err(IntegrationLogsError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct IntegrationLogsRequest<'a> {

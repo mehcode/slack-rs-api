@@ -75,7 +75,6 @@ pub fn revoke_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct RevokeRequest {
     /// Setting this parameter to 1 triggers a testing mode where the specified token will not actually be revoked.
@@ -230,8 +229,9 @@ where
 
 pub fn test_async(
     client: &reqwest::Client,
+    token: &str,
 ) -> impl Future<Item = TestResponse, Error = TestError<::reqwest::Error>> {
-    let params: &[(&str, &str)] = &[];
+    let params: &[(&str, &str)] = &[("token", token)];
     let url = ::get_slack_url_for_method("auth.test");
     let mut url = ::reqwest::Url::parse(&url).expect("Unable to parse url");
     url.query_pairs_mut().extend_pairs(params);
@@ -239,7 +239,6 @@ pub fn test_async(
         |mut result: reqwest::Response| result.json().map_err(TestError::Client),
     )
 }
-
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct TestResponse {

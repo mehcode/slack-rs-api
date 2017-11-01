@@ -66,7 +66,6 @@ pub fn delete_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct DeleteRequest<'a> {
     /// ID of file to delete.
@@ -267,7 +266,6 @@ pub fn info_async(
         |mut result: reqwest::Response| result.json().map_err(InfoError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct InfoRequest<'a> {
@@ -480,7 +478,6 @@ pub fn list_async(
         |mut result: reqwest::Response| result.json().map_err(ListError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct ListRequest<'a> {
@@ -698,7 +695,6 @@ pub fn revoke_public_url_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct RevokePublicURLRequest<'a> {
     /// File to revoke
@@ -896,7 +892,6 @@ pub fn shared_public_url_async(
             result.json().map_err(SharedPublicURLError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct SharedPublicURLRequest<'a> {

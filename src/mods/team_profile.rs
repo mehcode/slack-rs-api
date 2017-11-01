@@ -71,7 +71,6 @@ pub fn get_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct GetRequest<'a> {
     /// Filter by visibility.

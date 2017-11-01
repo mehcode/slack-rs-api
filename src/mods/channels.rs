@@ -68,7 +68,6 @@ pub fn archive_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct ArchiveRequest<'a> {
     /// Channel to archive
@@ -289,7 +288,6 @@ pub fn create_async(
             result.json().map_err(CreateError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct CreateRequest<'a> {
@@ -551,7 +549,6 @@ pub fn history_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct HistoryRequest<'a> {
     /// Channel to fetch history for.
@@ -756,7 +753,6 @@ pub fn info_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct InfoRequest<'a> {
     /// Channel to get info on
@@ -948,7 +944,6 @@ pub fn invite_async(
             result.json().map_err(InviteError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct InviteRequest<'a> {
@@ -1189,7 +1184,6 @@ pub fn join_async(
         |mut result: reqwest::Response| result.json().map_err(JoinError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct JoinRequest<'a> {
@@ -1437,7 +1431,6 @@ pub fn kick_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct KickRequest<'a> {
     /// Channel to remove user from.
@@ -1659,7 +1652,6 @@ pub fn leave_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct LeaveRequest<'a> {
     /// Channel to leave
@@ -1875,7 +1867,6 @@ pub fn list_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct ListRequest {
     /// Exclude archived channels from the list
@@ -2059,7 +2050,6 @@ pub fn mark_async(
         |mut result: reqwest::Response| result.json().map_err(MarkError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct MarkRequest<'a> {
@@ -2269,7 +2259,6 @@ pub fn rename_async(
             result.json().map_err(RenameError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct RenameRequest<'a> {
@@ -2527,7 +2516,6 @@ pub fn replies_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct RepliesRequest<'a> {
     /// Channel to fetch thread from
@@ -2729,7 +2717,6 @@ pub fn set_purpose_async(
             result.json().map_err(SetPurposeError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct SetPurposeRequest<'a> {
@@ -2947,7 +2934,6 @@ pub fn set_topic_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct SetTopicRequest<'a> {
     /// Channel to set the topic of
@@ -3155,7 +3141,6 @@ pub fn unarchive_async(
             result.json().map_err(UnarchiveError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct UnarchiveRequest<'a> {

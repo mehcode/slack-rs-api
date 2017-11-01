@@ -69,7 +69,6 @@ pub fn add_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct AddRequest<'a> {
     /// File to add a comment to.
@@ -270,7 +269,6 @@ pub fn delete_async(
         })
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct DeleteRequest<'a> {
     /// File to delete a comment from.
@@ -467,7 +465,6 @@ pub fn edit_async(
         |mut result: reqwest::Response| result.json().map_err(EditError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct EditRequest<'a> {

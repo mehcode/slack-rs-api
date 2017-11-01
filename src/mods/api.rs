@@ -62,7 +62,6 @@ pub fn test_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct TestRequest<'a> {
     /// Error response to return

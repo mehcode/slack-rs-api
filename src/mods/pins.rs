@@ -77,7 +77,6 @@ pub fn add_async(
     )
 }
 
-
 #[derive(Clone, Default, Debug)]
 pub struct AddRequest<'a> {
     /// Channel to pin the item in.
@@ -306,7 +305,6 @@ pub fn list_async(
         |mut result: reqwest::Response| result.json().map_err(ListError::Client),
     )
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct ListRequest<'a> {
@@ -587,7 +585,6 @@ pub fn remove_async(
             result.json().map_err(RemoveError::Client)
         })
 }
-
 
 #[derive(Clone, Default, Debug)]
 pub struct RemoveRequest<'a> {
