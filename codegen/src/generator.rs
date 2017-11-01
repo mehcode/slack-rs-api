@@ -144,10 +144,10 @@ impl Method {
                 #[cfg(feature = \"reqwest\")]
                 {documentation}
                 pub fn {method_name}_async(
-                    client: &reqwest::Client,
+                    client: &reqwest::Client, token: &str
                     ) -> impl Future<Item={response_type}, Error={error_type}<::reqwest::Error>>
                 {{
-                     let params: &[(&str, &str)] = &[];
+                     let params: &[(&str, &str)] = &[(\"token\", token)];
                      {send_async_call}
                 }}
 
