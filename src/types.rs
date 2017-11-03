@@ -105,6 +105,7 @@ pub struct Im {
     pub is_im: Option<bool>,
     pub is_user_deleted: Option<bool>,
     pub user: Option<String>,
+    pub latest: Option<::Message>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
