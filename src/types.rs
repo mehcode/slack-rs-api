@@ -36,6 +36,7 @@ pub struct Conversation {
     pub is_mpim: Option<bool>,
     pub last_read: Option<String>,
     pub name: Option<String>,
+    pub user: Option<String>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -117,8 +118,8 @@ pub struct Im {
     pub id: Option<String>,
     pub is_im: Option<bool>,
     pub is_user_deleted: Option<bool>,
-    pub user: Option<String>,
     pub latest: Option<::Message>,
+    pub user: Option<String>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
