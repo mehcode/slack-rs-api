@@ -1,5 +1,6 @@
 pub mod chat;
 pub mod usergroups;
+pub mod conversations;
 pub mod emoji;
 pub mod api;
 pub mod search;
