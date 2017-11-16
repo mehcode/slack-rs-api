@@ -521,6 +521,7 @@ impl<'de> ::serde::Deserialize<'de> for Message {
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageBotMessage {
     pub bot_id: Option<String>,
+    pub channel: Option<String>,
     pub icons: Option<MessageBotMessageIcons>,
     pub subtype: Option<String>,
     pub text: Option<String>,
@@ -540,6 +541,7 @@ pub struct MessageBotMessageIcons {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageChannelArchive {
+    pub channel: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
     pub ts: Option<String>,
@@ -551,6 +553,7 @@ pub struct MessageChannelArchive {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageChannelJoin {
+    pub channel: Option<String>,
     pub inviter: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
@@ -563,6 +566,7 @@ pub struct MessageChannelJoin {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageChannelLeave {
+    pub channel: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
     pub ts: Option<String>,
@@ -574,6 +578,7 @@ pub struct MessageChannelLeave {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageChannelName {
+    pub channel: Option<String>,
     pub name: Option<String>,
     pub old_name: Option<String>,
     pub subtype: Option<String>,
@@ -587,6 +592,7 @@ pub struct MessageChannelName {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageChannelPurpose {
+    pub channel: Option<String>,
     pub purpose: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
@@ -599,6 +605,7 @@ pub struct MessageChannelPurpose {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageChannelTopic {
+    pub channel: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
     pub topic: Option<String>,
@@ -611,6 +618,7 @@ pub struct MessageChannelTopic {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageChannelUnarchive {
+    pub channel: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
     pub ts: Option<String>,
@@ -622,6 +630,7 @@ pub struct MessageChannelUnarchive {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageFileComment {
+    pub channel: Option<String>,
     pub comment: Option<::FileComment>,
     pub file: Option<::File>,
     pub subtype: Option<String>,
@@ -634,6 +643,7 @@ pub struct MessageFileComment {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageFileMention {
+    pub channel: Option<String>,
     pub file: Option<::File>,
     pub subtype: Option<String>,
     pub text: Option<String>,
@@ -646,6 +656,7 @@ pub struct MessageFileMention {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageFileShare {
+    pub channel: Option<String>,
     pub file: Option<::File>,
     pub subtype: Option<String>,
     pub text: Option<String>,
@@ -659,6 +670,7 @@ pub struct MessageFileShare {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageGroupArchive {
+    pub channel: Option<String>,
     pub members: Option<Vec<String>>,
     pub subtype: Option<String>,
     pub text: Option<String>,
@@ -671,6 +683,7 @@ pub struct MessageGroupArchive {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageGroupJoin {
+    pub channel: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
     pub ts: Option<String>,
@@ -682,6 +695,7 @@ pub struct MessageGroupJoin {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageGroupLeave {
+    pub channel: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
     pub ts: Option<String>,
@@ -693,6 +707,7 @@ pub struct MessageGroupLeave {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageGroupName {
+    pub channel: Option<String>,
     pub name: Option<String>,
     pub old_name: Option<String>,
     pub subtype: Option<String>,
@@ -706,6 +721,7 @@ pub struct MessageGroupName {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageGroupPurpose {
+    pub channel: Option<String>,
     pub purpose: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
@@ -718,6 +734,7 @@ pub struct MessageGroupPurpose {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageGroupTopic {
+    pub channel: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
     pub topic: Option<String>,
@@ -730,6 +747,7 @@ pub struct MessageGroupTopic {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageGroupUnarchive {
+    pub channel: Option<String>,
     pub subtype: Option<String>,
     pub text: Option<String>,
     pub ts: Option<String>,
