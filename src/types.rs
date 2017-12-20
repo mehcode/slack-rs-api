@@ -118,6 +118,7 @@ pub struct Im {
     pub id: Option<String>,
     pub is_im: Option<bool>,
     pub is_user_deleted: Option<bool>,
+    pub last_read: Option<String>,
     pub latest: Option<::Message>,
     pub user: Option<String>,
 }
