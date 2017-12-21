@@ -331,6 +331,7 @@ pub enum Message {
     PinnedItem(MessagePinnedItem),
     ReplyBroadcast(MessageReplyBroadcast),
     UnpinnedItem(MessageUnpinnedItem),
+    ShRoomCreated(MessageShRoomCreated),
 }
 
 impl<'de> ::serde::Deserialize<'de> for Message {
@@ -367,6 +368,7 @@ impl<'de> ::serde::Deserialize<'de> for Message {
             "pinned_item",
             "reply_broadcast",
             "unpinned_item",
+            "sh_room_created",
         ];
 
         let value = ::serde_json::Value::deserialize(deserializer)?;
@@ -501,6 +503,11 @@ impl<'de> ::serde::Deserialize<'de> for Message {
                     "unpinned_item" => {
                         ::serde_json::from_value::<MessageUnpinnedItem>(value.clone())
                             .map(Message::UnpinnedItem)
+                            .map_err(|e| D::Error::custom(&format!("{}", e)))
+                    }
+                    "sh_room_created" => {
+                        ::serde_json::from_value::<MessageShRoomCreated>(value.clone())
+                            .map(Message::ShRoomCreated)
                             .map_err(|e| D::Error::custom(&format!("{}", e)))
                     }
                     _ => Err(D::Error::unknown_variant(ty, VARIANTS)),
@@ -948,3 +955,13 @@ pub struct MessageUnpinnedItem {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageUnpinnedItemItem {}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct MessageShRoomCreated {
+    pub channel: Option<String>,
+    pub text: Option<String>,
+    pub ts: Option<String>,
+    #[serde(rename = "type")]
+    pub ty: Option<String>,
+    pub user: Option<String>,
+}
