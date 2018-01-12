@@ -330,14 +330,15 @@ pub enum Message {
     MessageReplied(MessageMessageReplied),
     PinnedItem(MessagePinnedItem),
     ReplyBroadcast(MessageReplyBroadcast),
+    ThreadBroadcast(MessageThreadBroadcast),
     UnpinnedItem(MessageUnpinnedItem),
     ShRoomCreated(MessageShRoomCreated),
 }
 
 impl<'de> ::serde::Deserialize<'de> for Message {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: ::serde::Deserializer<'de>,
+        where
+            D: ::serde::Deserializer<'de>,
     {
         use serde::de::Error as SerdeError;
 
@@ -367,6 +368,7 @@ impl<'de> ::serde::Deserialize<'de> for Message {
             "message_replied",
             "pinned_item",
             "reply_broadcast",
+            "thread_broadcast",
             "unpinned_item",
             "sh_room_created",
         ];
@@ -498,6 +500,11 @@ impl<'de> ::serde::Deserialize<'de> for Message {
                     "reply_broadcast" => {
                         ::serde_json::from_value::<MessageReplyBroadcast>(value.clone())
                             .map(Message::ReplyBroadcast)
+                            .map_err(|e| D::Error::custom(&format!("{}", e)))
+                    }
+                    "thread_broadcast" => {
+                        ::serde_json::from_value::<MessageThreadBroadcast>(value.clone())
+                            .map(Message::ThreadBroadcast)
                             .map_err(|e| D::Error::custom(&format!("{}", e)))
                     }
                     "unpinned_item" => {
@@ -893,6 +900,17 @@ pub struct MessageReplyBroadcastAttachment {
     pub ts: Option<String>,
 }
 
+#[derive(Clone, Debug, Deserialize)]
+pub struct MessageThreadBroadcast {
+    pub root: Option<Box<Message>>,
+    pub channel: Option<String>,
+    pub subtype: Option<String>,
+    pub ts: Option<String>,
+    #[serde(rename = "type")]
+    pub ty: Option<String>,
+    pub user: Option<String>,
+    pub text: Option<String>,
+}
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageStandard {
@@ -922,8 +940,57 @@ pub struct MessageStandardAttachment {
     pub thumb_url: Option<String>,
     pub title: Option<String>,
     pub title_link: Option<String>,
-    pub ts: Option<f32>,
+    #[serde(deserialize_with = "string_or_f32", default)]
+    pub ts: Option<String>,
 }
+
+fn string_or_f32<'de, D>(deserializer: D) -> Result<Option<String>, D::Error>
+    where D: ::serde::de::Deserializer<'de>
+{
+    struct StringOrF32;
+
+    impl<'de> ::serde::de::Visitor<'de> for StringOrF32
+    {
+        type Value = Option<String>;
+
+        fn expecting(&self, formatter: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+            formatter.write_str("string or f32 or u32")
+        }
+
+        fn visit_str<E>(self, value: &str) -> Result<Self::Value, E>
+            where E: ::serde::de::Error
+        {
+            Ok(Some(value.into()))
+        }
+
+        fn visit_i64<E>(self, value: i64) -> Result<Self::Value, E>
+            where E: ::serde::de::Error
+        {
+            Ok(Some(value.to_string()))
+        }
+
+        fn visit_u64<E>(self, value: u64) -> Result<Self::Value, E>
+            where E: ::serde::de::Error
+        {
+            Ok(Some(value.to_string()))
+        }
+
+        fn visit_f64<E>(self, value: f64) -> Result<Self::Value, E>
+            where E: ::serde::de::Error
+        {
+            Ok(Some(value.to_string()))
+        }
+
+        fn visit_none<E>(self) -> Result<Self::Value, E>
+            where E: ::serde::de::Error
+        {
+            Ok(None)
+        }
+    }
+
+    deserializer.deserialize_any(StringOrF32)
+}
+
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct MessageStandardAttachmentField {
