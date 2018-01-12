@@ -922,7 +922,7 @@ pub struct MessageStandardAttachment {
     pub thumb_url: Option<String>,
     pub title: Option<String>,
     pub title_link: Option<String>,
-    pub ts: Option<String>,
+    pub ts: Option<f32>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
